@@ -67,9 +67,12 @@
     <div class="content"> 
       <!-- ################################################################################################ -->
       <h1>the Information of Target Task</h1>
-      <img class="imgr borderedbox inspace-5" src="static/images/demo/imgrs.gif" alt="">
+      <img class="imgr borderedbox inspace-5" src="static/images/demo/T2-100_.jpg" alt="">
+      <img class="imgr borderedbox inspace-5" src="static/images/demo/ET-T2-100.jpg" alt="">
       <p>We perform experiments on <a href="/dataset"> three publicly available brain MRI segmentation datasets</a>: FeTS 2021 for brain tumor segmentation, iSeg-2019  for brain matter seg- mentation, and WMH for white matter hyperintensities segmentation. And here, we will only demonstrate some examples of dataset FeTS2021.</p>
-      <p>For each sample in FeTS 2021 dataset, volumes of 4 modalities are available, including T1-weighted (T1), T2-weighted (T2), Fluid-Attenuated Inversion Recovery (FLAIR), and T1-Weighted Contrast-Enhanced (T1CE). The volume size is 240*240*155. Corresponding labels of edematous tissue (ED), enhancing tumor (ET), and necrotic tumor core (NCR) are manually segmented by clinical experts.This dataset is further split into 22 partitions by the provider, according to different institutions and information extracted from images. Thus, each partition can be seen as an individual domain. Here, we additionally denote a task by “Task-Partition-Modality”, e.g., “ET-14-T1” represents the task of enhancing tumor segmentation on T1 modality using data from partition 14. </p>
+      <p>For each sample in FeTS 2021 dataset, volumes of 4 modalities are available, including T1-weighted (T1), T2-weighted (T2), Fluid-Attenuated Inversion Recovery (FLAIR), and T1-Weighted Contrast-Enhanced (T1CE). The volume size is 240*240*155. Corresponding labels of edematous tissue (ED), enhancing tumor (ET), and necrotic tumor core (NCR) are manually segmented by clinical experts.</p>
+      <p>This dataset is further split into 22 partitions by the provider, according to different institutions and information extracted from images. Thus, each partition can be seen as an individual domain. Here, we additionally denote a task by “Task-Partition-Modality”.</p>
+       <p>e.g., “ET-14-T1” represents the task of enhancing tumor segmentation on T1 modality using data from partition 14. </p>
       
   <div class="wrapper row1">
   <nav id="123" class="hoc clear"> 
@@ -132,8 +135,6 @@
       </script>
       <p id="result1"></p>
       <h1>RoI Analysis</h1>
-      <img class="imgl borderedbox inspace-5" src="static/images/demo/imgls.gif" alt="">
-      <img class="imgl borderedbox inspace-5" src="static/images/demo/imgls.gif" alt="">
       <p>Within Subset 1 (in which source tasks are under the same modality as the target task), select source tasks whose RoI shapes are more similar to that of the target task by calculating the shape similarity to generate Subset2. Specifically, we propose to use structural similarity index measure (SSIM) to quantify the RoI shape similarity.</p>
       <h1>Subset1 Table(s)</h1>
        <div class="scrollable">
