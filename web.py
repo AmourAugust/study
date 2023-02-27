@@ -27,23 +27,42 @@ def draw_bar(data):
     sorted_id = sorted(range(len(Dice)), key = lambda x:Dice[x], reverse=True)
     # print(Dice)
     plt.figure(figsize=(12,8))
-    plt.bar(range(len(Dice)), [i for i,_ in result_list], tick_label=[i for _,i in result_list], facecolor="#6600CC")  
+    colorlist = ["#6600CC","#6600CC","#6600CC","#888888", "#6600CC","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888",]
+    plt.bar(range(len(Dice)), [i for i,_ in result_list], tick_label=[i for _,i in result_list], color=colorlist)  
     plt.xticks(rotation=60)
-    plt.xlabel("source name")#x轴上的名字
-    plt.ylabel("Dice")#y轴上的名字
+    plt.xlabel("source name")
+    plt.ylabel("Dice")
     plt.ylim(0.55,0.75)
     plt.savefig("static/images/demo/bar_plot.png")
 
 
 
 mod_ana = [
-            ["ED-14-T1", "ED-14-T2", "NCR-14-T1", "NCR-14-T2", ], 
-            ["ED-13-T1", "ED-13-T2", "NCR-13-T1", "NCR-13-T2", ], 
-            ["ED-17-T1", "ED-17-T2", "NCR-17-T1", "NCR-17-T2",], 
-            ["ED-18-T1", "ED-18-T2", "NCR-18-T1", "NCR-18-T2",], 
+            ["static/images/demo/final/ED-14-T1.jpg", "static/images/demo/final/ED-14-T2.jpg", "static/images/demo/final/NCR-14-T1.jpg", "static/images/demo/final/NCR-14-T2.jpg", ],
+            ["static/images/demo/final/ED-13-T1.jpg", "static/images/demo/final/ED-13-T2.jpg", "static/images/demo/final/NCR-13-T1.jpg", "static/images/demo/final/NCR-13-T2.jpg", ], 
+            ["static/images/demo/final/ED-17-T1.jpg", "static/images/demo/final/ED-17-T2.jpg", "static/images/demo/final/NCR-17-T1.jpg", "static/images/demo/final/NCR-17-T2.jpg",], 
+            ["static/images/demo/final/ED-18-T1.jpg", "static/images/demo/final/ED-18-T2.jpg", "static/images/demo/final/NCR-18-T1.jpg", "static/images/demo/final/NCR-18-T2.jpg",], 
           ]
-roi_ana = [["ED-14-T2", "NCR-14-T2", "ED-13-T2", "NCR-13-T2", ], ["ED-17-T2", "NCR-17-T2", "ED-18-T2", "NCR-18-T2", ], ]
-trans_data = [["ED-14-T2", "0.1887", "-0.0226", ], ["ED-13-T2", "1.4031", "-0.0356", ], ["ED-17-T2", "1.3327", "-0.0389", ], ["ED-18-T2", "0.2776", "-0.0273"], ]
+mod_name = [
+                ["ED-14-T1", "ED-14-T2", "NCR-14-T1", "NCR-14-T2"], 
+                ["ED-13-T1", "ED-13-T2", "NCR-13-T1", "NCR-13-T2"], 
+                ["ED-17-T1", "ED-17-T2", "NCR-17-T1", "NCR-17-T2"], 
+                ["ED-18-T1", "ED-18-T2", "NCR-18-T1", "NCR-18-T2"],
+            ]
+roi_ana = [
+            ["ED-14-T2",  "NCR-14-T2", "ED-13-T2", "NCR-13-T2",],
+            ["static/images/demo/gt_ed/14.jpg", "static/images/demo/gt_ncr/14.jpg", "static/images/demo/gt_ed/13.jpg", "static/images/demo/gt_ncr/13.jpg",],
+            ["0.923", "0.957", "0.882", "0.957",],
+            ["ED-17-T2", "NCR-17-T2", "ED-18-T2", "NCR-18-T2",],
+            ["static/images/demo/gt_ed/17.jpg", "static/images/demo/gt_ncr/17.jpg","static/images/demo/gt_ed/18.jpg", "static/images/demo/gt_ncr/18.jpg",],
+            ["0.846", "0.947", "0.849", "0.947",],
+        ]
+trans_data = [
+                ["ED-14-T2","ED-13-T2","ED-17-T2","ED-18-T2",],
+                ["static/images/demo/gt_ed/14.jpg", "static/images/demo/gt_ed/13.jpg", "static/images/demo/gt_ed/17.jpg", "static/images/demo/gt_ed/18.jpg", ],
+                ["0.1887", "1.4031", "1.3327", "0.2776",],
+                ["-0.0226", "-0.0356", "-0.0389","-0.0273",],
+            ]
 final_results = [
     ["ED-14-T1", "-0.0380", "-0.0395", "0.664", ],
     ["ED-14-T2", "0.1887", "-0.0226", "0.703", ],
@@ -63,10 +82,13 @@ final_results = [
     ["NCR-18-T2", "2.2038", "-0.0394", "0.666", ],
 
 ]
+# roi_pic_dir = ["static/images/demo/gt_ed/14.png", "static/images/demo/gt_ncr/14.png", "static/images/demo/gt_ed/13.png", "static/images/demo/gt_ncr/13.png", "static/images/demo/gt_ed/17.png", "static/images/demo/gt_ncr/17.png","static/images/demo/gt_ed/18.png", "static/images/demo/gt_ncr/18.png", ]
 
 table = {}
 table["mod_ana"] = mod_ana
+table["mod_name"] = mod_name
 table["roi_ana"] = roi_ana
+# table["roi_pic_dir"] = roi_pic_dir
 table["trans_data"] = trans_data
 table["final_results"] = final_results
 print(table)
@@ -82,7 +104,6 @@ def index():
 @app.route('/demonstration',methods=["GET", "POST"])
 def demonstration():
     if request.method == 'POST':
-        print("hh")
         target_name = request.form.get('targetname')
         print(target_name)
         return render_template('1.html',target_name=target_name)
@@ -99,12 +120,6 @@ def demon(target_name):
 def upload():
     return render_template('upload.html')
 
-@app.route('/plot.png')
-def plot_png():
-    fig = draw_bar()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
 
 if __name__ == '__main__':
     # app.run(host='127.0.0.1',port=5000)
