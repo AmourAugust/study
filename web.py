@@ -27,7 +27,7 @@ def draw_bar(data):
     sorted_id = sorted(range(len(Dice)), key = lambda x:Dice[x], reverse=True)
     # print(Dice)
     plt.figure(figsize=(12,8))
-    colorlist = ["#6600CC","#6600CC","#6600CC","#888888", "#6600CC","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888","#888888",]
+    colorlist = ["#6600CC","#6600CC","#6600CC","#CCBBFF", "#6600CC","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF","#CCBBFF",]
     plt.bar(range(len(Dice)), [i for i,_ in result_list], tick_label=[i for _,i in result_list], color=colorlist)  
     plt.xticks(rotation=60)
     plt.xlabel("source name")
